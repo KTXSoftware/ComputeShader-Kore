@@ -22,7 +22,7 @@ namespace {
 	ComputeShader* computeShader;
 	ComputeTextureUnit computeTexunit;
 	ComputeConstantLocation computeLocation;
-	
+
 	float width = 1024;
 	float height = 768;
 
@@ -33,8 +33,8 @@ namespace {
 		Kore::Compute::setShader(computeShader);
 		Kore::Compute::setTexture(computeTexunit, texture, Compute::Write);
 		Kore::Compute::setFloat(computeLocation, 0);
-		Kore::Compute::compute(texture->width, texture->height, 1);
-		
+		Kore::Compute::compute(texture->width / 16, texture->height / 16, 1);
+
 		Graphics4::setPipeline(pipeline);
 		Graphics4::setMatrix(offset, mat3::RotationZ(0));// (float)Kore::System::time()));
 		Graphics4::setVertexBuffer(*vertices);
@@ -47,7 +47,7 @@ namespace {
 	}
 }
 
-int kore(int argc, char** argv) {
+int kickstart(int argc, char** argv) {
 	Kore::System::init("Shader", 1024, 768);
 	Kore::System::setCallback(update);
 
